@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
+  FlastList,
   StyleSheet,
   View,
   Text,
@@ -10,19 +11,53 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
+  ToastAndroid,
 } from 'react-native';
-import HouseIcon from '../../../../assets/house.png';
+
 import BackGround from '../../../../assets/background2.jpg';
 import Left from '../../../../assets/left-removebg-preview.png';
 import Right from '../../../../assets/right-removebg-preview.png';
 import {ScaledSheet} from 'react-native-size-matters';
+import SQLite from 'react-native-sqlite-storage';
+import {getDBConnection, getListKhachHang} from '../../../handleDatabase/index';
+
+SQLite.enablePromise(true);
 
 const DuLieuNgoaiTuyen = ({stackNavigation}) => {
+  useEffect(() => {
+    const db = SQLite.openDatabase({
+      name: 'MainDB.db',
+      location: 'default',
+      createFromLocation: '~www/MainDB.db',
+    });
+    // console.log(db);
+    db.transaction(tx => {
+      tx.executeSql('SELECT * FROM KhachHang', [], (tx, results) => {
+        console.log('select OK');
+      });
+    });
+  }, []);
+
   const {height} = useWindowDimensions();
+  const [KhachHang, setKhachHang] = useState([]);
   const callDetails = () => {
-    // stackNavigation.navigate('Details');
-    console.log(stackNavigation);
+    stackNavigation.navigate('Details');
+    //console.log(stackNavigation);
   };
+
+  const testBtn = async () => {
+    console.log('');
+  };
+  const renderItem = ({item}) => {
+    <View style={styles.containerSquare}>
+      <TouchableOpacity onPress={callDetails} style={styles.squareHouse}>
+        <Text numberOfLines={2} style={styles.text}>
+          {item.HoTenKhachHang}
+        </Text>
+      </TouchableOpacity>
+    </View>;
+  };
+
   return (
     <>
       <SafeAreaView style={styles.container}>
@@ -35,82 +70,11 @@ const DuLieuNgoaiTuyen = ({stackNavigation}) => {
               <Image source={Right} style={styles.arrow} />
             </TouchableOpacity>
           </View>
-          <View style={styles.containerSquare}>
-            <TouchableOpacity onPress={callDetails} style={styles.squareHouse}>
-              <Text numberOfLines={2} style={styles.text}>
-                Nguyễn Văn An
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.squareHouse}>
-              <Text numberOfLines={2} style={styles.text}>
-                Trần Thị Thái Ngọc Anh
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.squareHouse}>
-              <Text numberOfLines={2} style={styles.text}>
-                Phạm Anh Thắng
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.containerSquare}>
-            <TouchableOpacity style={styles.squareHouse}>
-              <Text numberOfLines={2} style={styles.text}>
-                Vũ Chí Công
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.squareHouse}>
-              <Text numberOfLines={2} style={styles.text}>
-                Hoàng Thị Bảo Dương
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.squareHouse}>
-              <Text numberOfLines={2} style={styles.text}>
-                Hồ Huy Hoàng
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.containerSquare}>
-            <TouchableOpacity style={styles.squareHouse}>
-              <Text numberOfLines={2} style={styles.text}>
-                Phạm Anh Tài
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.squareHouse}>
-              <Text numberOfLines={2} style={styles.text}>
-                Lê Văn Nam
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.squareHouse}>
-              <Text numberOfLines={2} style={styles.text}>
-                Dương Thị Kiều
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.containerSquare}>
-            <TouchableOpacity style={styles.squareHouse}>
-              <Text numberOfLines={2} style={styles.text}>
-                Phạm Anh Tài
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.squareHouse}>
-              <Text numberOfLines={2} style={styles.text}>
-                Lê Văn Nam
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.squareHouse}>
-              <Text numberOfLines={2} style={styles.text}>
-                Dương Thị Kiều
-              </Text>
-            </TouchableOpacity>
-          </View>
+          {/* test button de log ra du lieu xem co lay duoc du lieu chua ? */}
+          <TouchableOpacity onPress={() => testBtn()}>
+            <Text>Test</Text>
+          </TouchableOpacity>
+          {/* <FlastList data={KhachHang} renderItem={renderItem}></FlastList> */}
           <View style={{alignItems: 'center'}}>
             <TouchableOpacity style={styles.containerButton}>
               <Text style={styles.textLuu}>Lưu ngoại tuyến</Text>

@@ -140,7 +140,7 @@ const styles = ScaledSheet.create({
   },
 
   input: {
-    width: '50%',
+    width: '93%',
     padding: '10@s',
   },
 

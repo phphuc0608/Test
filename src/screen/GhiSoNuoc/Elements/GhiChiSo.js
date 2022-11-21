@@ -11,7 +11,6 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import HouseIcon from '../../../../assets/house.png';
 import BackGround from '../../../../assets/background2.jpg';
 import Left from '../../../../assets/left-removebg-preview.png';
 import Right from '../../../../assets/right-removebg-preview.png';

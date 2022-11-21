@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {ScaledSheet} from 'react-native-size-matters';
 import BackGround from '../../../../assets/background2.jpg';
 
 const Details = ({navigation}) => {
@@ -98,7 +99,7 @@ const Details = ({navigation}) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   background: {
     width: '100%',
     height: '100%',
@@ -108,11 +109,11 @@ const styles = StyleSheet.create({
   safe: {flex: 1, padding: 10},
   containerLabel: {
     flex: 1,
-    height: 100,
+    height: '100@s',
     alignItems: 'center',
   },
   container: {
-    height: 70,
+    height: '70@s',
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderColor: 'black',
@@ -120,59 +121,59 @@ const styles = StyleSheet.create({
     //backgroundColor:"red",
   },
   textLabel: {
-    fontSize: 25,
+    fontSize: '25@s',
     fontWeight: 'bold',
-    margin: 33,
+    margin: '33@s',
   },
   squareCustomer: {
-    height: 60,
-    margin: 10,
+    height: '60@s',
+    margin: '10@s',
     justifyContent: 'center',
     flexDirection: 'row',
     backgroundColor: '#F8F8FF',
-    borderRadius: 10,
+    borderRadius: '10@s',
   },
   squareText: {
-    width: 180,
-    flexDirection: 'flex-start',
-    height: 60,
-    margin: 6,
+    width: '180@s',
+    flexDirection: 'row',
+    height: '60@s',
+    margin: '6@s',
   },
   squareText2: {
-    width: 150,
+    width: '150@s',
     alignItems: 'flex-end',
-    height: 60,
-    margin: 6,
+    height: '60@s',
+    margin: '6@s',
   },
-  text1: {fontSize: 17, fontWeight: 'bold', margin: 14},
-  text2: {fontSize: 17, margin: 14},
+  text1: {fontSize: '17@s', fontWeight: 'bold', margin: '14@s'},
+  text2: {fontSize: '17@s', margin: '14@s'},
   containerSearch: {
     backgroundColor: 'white',
-    width: 100,
-    height: 30,
-    marginTop: 4,
-    borderRadius: 10,
-    paddingHorizontal: 10,
+    width: '100@s',
+    height: '30@s',
+    marginTop: '4@s',
+    borderRadius: '10@s',
+    paddingHorizontal: '10@s',
   },
   keyboard: {
     flex: 1,
     //backgroundColor: "red",
   },
   buttonLuu: {
-    width: 150,
-    padding: 15,
+    width: '150@s',
+    padding: '15@s',
     //marginVertical: 15,
     alignItems: 'center',
-    borderRadius: 5,
+    borderRadius: '5@s',
     backgroundColor: '#3B71F3',
-    margin: 4,
+    margin: '4@s',
   },
   textLuu: {
     fontWeight: 'bold',
     color: 'white',
   },
   containerButton: {
-    height: 70,
+    height: '70@s',
     alignItems: 'flex-end',
     //backgroundColor:"red",
   },
